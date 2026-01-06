@@ -98,7 +98,7 @@ ul {
 }
 
 .logo img {
-    height: 25px;
+    height: 115px;
     width: auto;
     object-fit: contain;
 }
@@ -131,6 +131,10 @@ ul {
     overflow: hidden;
     padding: 120px 5% 0;
     /* More top padding for nav */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('images/indicadores.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .hero-content {
@@ -287,6 +291,44 @@ ul {
 
 .bg-darker {
     background-color: var(--bg-secondary);
+}
+
+/* Experience Section - White Theme */
+#experiencia {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+#experiencia .section-title {
+    color: #000000;
+}
+
+#experiencia .timeline::before {
+    background-color: #e0e0e0;
+    /* Light grey line */
+}
+
+#experiencia .timeline-date {
+    color: #000000;
+    font-weight: 700;
+}
+
+#experiencia h3 {
+    color: #000000;
+}
+
+#experiencia h4 {
+    color: #555555;
+}
+
+#experiencia p {
+    color: #333333;
+}
+
+#experiencia .timeline-dot {
+    background-color: #000000;
+    border: 2px solid #ffffff;
+    /* White border for contrast */
 }
 
 .section-title {
@@ -450,7 +492,7 @@ ul {
     background-color: transparent;
     padding: 40px 20px;
     border: 1px solid var(--border-color);
-    border-radius: var(--btn-radius);
+    border-radius: 15px;
     text-align: center;
     transition: var(--transition);
 }
@@ -478,7 +520,39 @@ ul {
     font-size: 0.9rem;
 }
 
+/* Specific Card Backgrounds */
+#card-bi {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/business_intelillence_logo.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+#card-data {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/sql_logo.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+#card-tools {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/excel_logo.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+#card-other {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/ia_logo.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
 /* Contact */
+#contacto {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url('images/fondo3.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
 .contact-wrapper {
     display: flex;
     justify-content: center;
@@ -518,7 +592,6 @@ footer {
     padding: 40px 0;
     text-align: center;
     border-top: 1px solid var(--border-color);
-    color: var(--text-secondary);
     font-size: 0.9rem;
 }
 
