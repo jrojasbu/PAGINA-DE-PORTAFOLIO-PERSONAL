@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
-            
+
             follower.animate({
                 left: e.clientX - 10 + 'px',
                 top: e.clientY - 10 + 'px'
@@ -54,12 +54,64 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.section-title, .timeline-item, .skill-card').forEach(el => {
+    document.querySelectorAll('.section-title, .experience-card, .skill-card').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
         el.style.transition = 'all 0.6s ease';
         observer.observe(el);
     });
+
+    // Experience Slider Logic
+    const slider = document.querySelector('.experience-slider');
+    if (slider) {
+        const slides = document.querySelectorAll('.experience-card');
+        const prevBtn = document.querySelector('.prev-nav');
+        const nextBtn = document.querySelector('.next-nav');
+        let currentIndex = 0;
+
+        function updateSlider() {
+            // Translate the slider track
+            // Assuming each slide is 100% width + 30px gap.
+            // Actually, with flex gap, we need to be careful.
+            // Best to calculate width of slide + gap
+            const slideWidth = slides[0].offsetWidth;
+            const gap = 30; // matched css gap
+            const offset = -(currentIndex * (slideWidth + gap));
+            slider.style.transform = `translateX(${offset}px)`;
+
+            // Optional: Opacity effects for focus
+            slides.forEach((slide, index) => {
+                if (index === currentIndex) {
+                    slide.style.opacity = '1';
+                    slide.style.transform = 'scale(1)';
+                } else {
+                    slide.style.opacity = '0.5';
+                    slide.style.transform = 'scale(0.95)';
+                }
+            });
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSlider();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < slides.length - 1) {
+                currentIndex++;
+                updateSlider();
+            }
+        });
+
+        // Initialize
+        updateSlider();
+
+        // Handle resize
+        window.addEventListener('resize', updateSlider);
+    }
+
 
     // Add visible class styling dynamically
     const style = document.createElement('style');
