@@ -67,28 +67,56 @@ document.addEventListener('DOMContentLoaded', () => {
         const slides = document.querySelectorAll('.experience-card');
         const prevBtn = document.querySelector('.prev-nav');
         const nextBtn = document.querySelector('.next-nav');
+        const pagination = document.querySelector('.slider-pagination');
         let currentIndex = 0;
+
+        // Create pagination dots
+        if (pagination) {
+            slides.forEach((_, index) => {
+                const dot = document.createElement('span');
+                dot.classList.add('pagination-dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateSlider();
+                });
+                pagination.appendChild(dot);
+            });
+        }
 
         function updateSlider() {
             // Translate the slider track
-            // Assuming each slide is 100% width + 30px gap.
-            // Actually, with flex gap, we need to be careful.
-            // Best to calculate width of slide + gap
             const slideWidth = slides[0].offsetWidth;
-            const gap = 30; // matched css gap
+            const gap = 40; // matched css gap
             const offset = -(currentIndex * (slideWidth + gap));
             slider.style.transform = `translateX(${offset}px)`;
 
-            // Optional: Opacity effects for focus
+            // Update pagination dots
+            if (pagination) {
+                const dots = pagination.querySelectorAll('.pagination-dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            // Smooth fade effects for focus
             slides.forEach((slide, index) => {
                 if (index === currentIndex) {
                     slide.style.opacity = '1';
-                    slide.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+                    slide.style.transform = 'scale(1)';
+                    slide.style.filter = 'blur(0px)';
                 } else {
-                    slide.style.opacity = '1';
-                    slide.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+                    slide.style.opacity = '0.4';
+                    slide.style.transform = 'scale(0.95)';
+                    slide.style.filter = 'blur(2px)';
                 }
             });
+
+            // Update button states
+            prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+            prevBtn.style.cursor = currentIndex === 0 ? 'not-allowed' : 'pointer';
+            nextBtn.style.opacity = currentIndex === slides.length - 1 ? '0.5' : '1';
+            nextBtn.style.cursor = currentIndex === slides.length - 1 ? 'not-allowed' : 'pointer';
         }
 
         prevBtn.addEventListener('click', () => {
@@ -104,6 +132,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateSlider();
             }
         });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                currentIndex--;
+                updateSlider();
+            } else if (e.key === 'ArrowRight' && currentIndex < slides.length - 1) {
+                currentIndex++;
+                updateSlider();
+            }
+        });
+
+        // Touch/Swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        slider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50 && currentIndex < slides.length - 1) {
+                currentIndex++;
+                updateSlider();
+            }
+            if (touchEndX > touchStartX + 50 && currentIndex > 0) {
+                currentIndex--;
+                updateSlider();
+            }
+        }
 
         // Initialize
         updateSlider();

@@ -329,45 +329,53 @@ ul {
 .experience-slider-wrapper {
     position: relative;
     width: 100%;
-    max-width: 1200px;
-    /* Limit width for aesthetics */
+    max-width: 100%;
+    /* Full width */
     margin: 40px auto 0;
-    padding: 40px 20px;
+    padding: 80px 20px;
+    overflow-x: clip;
 }
 
 .experience-slider {
     display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
+    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+    gap: 40px;
+    will-change: transform;
+    padding: 0 calc((100% - 800px) / 2);
+    /* Center the cards */
 }
 
 .experience-card {
-    min-width: calc(50% - 15px);
-    max-width: 600px;
-    flex: 1 1 calc(50% - 15px);
+    width: 800px;
+    min-width: 800px;
+    max-width: 800px;
+    flex-shrink: 0;
     background: #ffffff;
     border-radius: 20px;
     padding: 40px;
     /* Deep Dramatic 3D Shadow Stack - Accentuated */
     box-shadow:
-        0 2px 5px rgba(0, 0, 0, 0.2),
-        0 5px 15px rgba(0, 0, 0, 0.2),
-        0 15px 35px rgba(0, 0, 0, 0.2);
+        0 4px 8px rgba(0, 0, 0, 0.1),
+        0 8px 20px rgba(0, 0, 0, 0.15),
+        0 16px 40px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     gap: 20px;
     opacity: 1;
     transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1),
+        opacity 0.6s ease,
+        filter 0.6s ease,
+        transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+    border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .experience-card:hover {
-    transform: perspective(1000px) rotateX(2deg) translateY(-5px);
+    transform: perspective(1000px) translateY(-8px);
     box-shadow:
-        0 25px 50px rgba(0, 0, 0, 0.35),
-        0 20px 25px rgba(0, 0, 0, 0.25);
+        0 8px 16px rgba(0, 0, 0, 0.15),
+        0 16px 32px rgba(0, 0, 0, 0.2),
+        0 24px 48px rgba(0, 0, 0, 0.25);
 }
 
 /* Active slide processing will be done via class or just logic, 
@@ -432,45 +440,63 @@ ul {
 
 /* Navigation Buttons */
 .slider-nav {
-    display: none;
+    display: flex;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid #eee;
-    color: #333;
-    width: 50px;
-    height: 50px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    color: #000;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     /* Circle buttons */
     cursor: pointer;
     z-index: 10;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 1.3rem;
+    transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
 }
 
 .slider-nav:hover {
     background: #000;
     color: #fff;
     border-color: #000;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
 .prev-nav {
-    left: -25px;
+    left: 10px;
 }
 
 .next-nav {
-    right: -25px;
+    right: 10px;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    .experience-slider-wrapper {
+        padding: 40px 10px;
+    }
+
+    .experience-slider {
+        padding: 0 10px;
+    }
+
     .experience-card {
-        min-width: 100%;
-        flex: 1 1 100%;
+        width: calc(100vw - 60px);
+        min-width: calc(100vw - 60px);
+        max-width: calc(100vw - 60px);
+        padding: 30px;
+    }
+
+    .exp-header {
+        flex-direction: column;
+        gap: 10px;
     }
 
     .exp-body {
@@ -483,18 +509,56 @@ ul {
     }
 
     .slider-nav {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
     }
 
     .prev-nav {
-        left: -10px;
+        left: 5px;
     }
 
     .next-nav {
-        right: -10px;
+        right: 5px;
     }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+    .experience-card {
+        width: 700px;
+        min-width: 700px;
+        max-width: 700px;
+    }
+}
+
+/* Slider Pagination */
+.slider-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 40px;
+}
+
+.pagination-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+    border: 2px solid transparent;
+}
+
+.pagination-dot:hover {
+    background: rgba(0, 0, 0, 0.4);
+    transform: scale(1.2);
+}
+
+.pagination-dot.active {
+    background: #000;
+    width: 32px;
+    border-radius: 6px;
+    border-color: #000;
 }
 
 .section-title {
