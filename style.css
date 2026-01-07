@@ -359,7 +359,8 @@ ul {
     flex-shrink: 0;
     background: #ffffff;
     border-radius: 20px;
-    padding: 40px;
+    padding: 30px;
+    /* Reduced padding slightly */
     /* Deep Dramatic 3D Shadow Stack - Accentuated */
     box-shadow:
         0 4px 8px rgba(0, 0, 0, 0.1),
@@ -367,7 +368,8 @@ ul {
         0 16px 40px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
+    /* Reduced gap slightly */
     opacity: 1;
     transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
     transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1),
@@ -375,6 +377,8 @@ ul {
         filter 0.6s ease,
         transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
     border: 1px solid rgba(0, 0, 0, 0.08);
+    max-height: 75vh;
+    /* Limit height to fit screen */
 }
 
 .experience-card:hover {
@@ -427,7 +431,33 @@ ul {
 .exp-body {
     display: flex;
     gap: 30px;
-    align-items: center;
+    align-items: flex-start;
+    /* Align top so image stays up */
+    overflow-y: auto;
+    /* Enable scrolling */
+    padding-right: 15px;
+    /* Space for scrollbar */
+    flex: 1;
+    /* Take available space */
+}
+
+/* Custom Scrollbar for Experience Card */
+.exp-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.exp-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.exp-body::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.exp-body::-webkit-scrollbar-thumb:hover {
+    background: #999;
 }
 
 .exp-body p {
