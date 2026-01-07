@@ -771,24 +771,65 @@ ul {
     background-position: center;
 }
 
-#card-tools {
+#card-excel {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/excel_logo.jpeg');
     background-size: cover;
     background-position: center;
 }
 
-#card-other {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/ia_logo.jpeg');
+#card-cloud {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/Cloud%20y%20Desarrollo.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+#card-erp {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/ERP%20y%20Sistemas%20de%20Gesti%C3%B3n.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+#card-datascience {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/Data%20Science%20%26%20%C3%89tica.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+#card-business {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/Negocios%20y%20Finanzas.jpeg');
     background-size: cover;
     background-position: center;
 }
 
 /* Contact */
 #contacto {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url('images/fondo3.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    position: relative;
+    /* background-image removed for video */
+}
+
+.contact-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.contact-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6));
+    z-index: 1;
+}
+
+#contacto .container {
+    position: relative;
+    z-index: 2;
 }
 
 .contact-wrapper {
