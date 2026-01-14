@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
             skill_bus_title: "Negocios y Finanzas",
             skill_bus_desc: "Análisis de Negocios · Retención para Startups · Inversión en Bolsa · Trading",
             contact_title: "Contacto",
-            footer_rights: "&copy; 2026 Jairo Rojas. Todos los derechos reservados."
+            footer_rights: "&copy; 2026 Hiraida Castellano. Todos los derechos reservados."
         },
         en: {
             nav_home: "Home",
@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
             skill_bus_title: "Business & Finance",
             skill_bus_desc: "Business Analysis · Retention for Startups · Stock Market Investment · Trading",
             contact_title: "Contact",
-            footer_rights: "&copy; 2026 Jairo Rojas. All rights reserved."
+            footer_rights: "&copy; 2026 Hiraida Castellano. All rights reserved."
         }
     };
 
