@@ -951,12 +951,41 @@ footer {
 
     .hero-btns {
         justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        gap: 12px;
+    }
+
+    .hero-btns .btn {
+        width: 100%;
+        padding: 14px 25px;
+        text-align: center;
+        font-size: 0.8rem;
     }
 
 
 
     .name {
-        font-size: 3rem;
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+
+    .title {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+
+    .description {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    .hero-img {
+        max-height: 40vh;
+        width: auto;
+        margin-bottom: 20px;
     }
 
     .nav-links {
