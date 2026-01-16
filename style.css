@@ -12,8 +12,8 @@
     /* Clean geometric sans */
     --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
     --transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-    --btn-radius: 0px;
-    /* Sharp corners */
+    --btn-radius: 50px;
+    /* Rounded pills */
 }
 
 * {
@@ -341,15 +341,33 @@ ul {
     background-color: var(--bg-secondary);
 }
 
-/* Experience Section - White Theme */
+/* Experience Section - Light Glass Theme */
 #experiencia {
-    background-color: #ffffff;
+    background: #ffffff;
+    background-image:
+        radial-gradient(at 0% 0%, #f8fafc 0px, transparent 50%),
+        radial-gradient(at 100% 100%, #f1f5f9 0px, transparent 50%),
+        radial-gradient(at 50% 50%, #f1f5f9 0px, transparent 50%);
     color: #000000;
     padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#experiencia::before,
+#experiencia::after {
+    display: none;
+    /* Quitamos los blobs de colores */
+}
+
+#experiencia .container {
+    position: relative;
+    z-index: 1;
 }
 
 #experiencia .section-title {
     color: #000000;
+    text-shadow: none;
 }
 
 /* Slider Styles */
@@ -377,51 +395,44 @@ ul {
     min-width: 800px;
     max-width: 800px;
     flex-shrink: 0;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 20px;
     padding: 30px;
-    /* Reduced padding slightly */
-    /* Deep Dramatic 3D Shadow Stack - Accentuated */
     box-shadow:
-        0 4px 8px rgba(0, 0, 0, 0.1),
-        0 8px 20px rgba(0, 0, 0, 0.15),
-        0 16px 40px rgba(0, 0, 0, 0.2);
+        0 20px 40px rgba(0, 0, 0, 0.12),
+        0 15px 15px rgba(0, 0, 0, 0.08),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.4);
     display: flex;
     flex-direction: column;
     gap: 15px;
-    /* Reduced gap slightly */
     opacity: 1;
     transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
     transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1),
         opacity 0.6s ease,
         filter 0.6s ease,
         transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
-    border: 1px solid rgba(0, 0, 0, 0.08);
     max-height: 75vh;
-    /* Limit height to fit screen */
 }
 
 .experience-card:hover {
-    transform: perspective(1000px) translateY(-8px);
+    transform: perspective(1000px) translateY(-12px);
     box-shadow:
-        0 8px 16px rgba(0, 0, 0, 0.15),
-        0 16px 32px rgba(0, 0, 0, 0.2),
-        0 24px 48px rgba(0, 0, 0, 0.25);
+        0 30px 60px rgba(0, 0, 0, 0.18),
+        0 20px 25px rgba(0, 0, 0, 0.1);
 }
 
 /* Active slide processing will be done via class or just logic, 
    but since we slide, we might just keep them all full opacity 
    if we show one at a time. Let's start simple. */
-.experience-card {
-    opacity: 1;
-    transform: none;
-}
 
 .exp-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     padding-bottom: 20px;
     margin-bottom: 10px;
 }
@@ -429,7 +440,7 @@ ul {
 .exp-date {
     font-size: 0.9rem;
     font-weight: 700;
-    color: #888;
+    color: #94a3b8;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -437,14 +448,14 @@ ul {
 .exp-role h3 {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #000;
+    color: #0f172a;
     margin-bottom: 5px;
 }
 
 .exp-role h4 {
     font-size: 1rem;
     font-weight: 500;
-    color: #555;
+    color: #475569;
     font-family: var(--font-body);
 }
 
@@ -467,17 +478,17 @@ ul {
 }
 
 .exp-body::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: rgba(0, 0, 0, 0.03);
     border-radius: 3px;
 }
 
 .exp-body::-webkit-scrollbar-thumb {
-    background: #ccc;
+    background: rgba(0, 0, 0, 0.1);
     border-radius: 3px;
 }
 
 .exp-body::-webkit-scrollbar-thumb:hover {
-    background: #999;
+    background: rgba(0, 0, 0, 0.15);
 }
 
 .exp-body p {
@@ -492,8 +503,9 @@ ul {
     width: 150px;
     height: 100px;
     object-fit: cover;
-    border-radius: 4px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Navigation Buttons */
@@ -502,20 +514,19 @@ ul {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.95);
-    border: 2px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     color: #000;
     width: 55px;
     height: 55px;
     border-radius: 50%;
-    /* Circle buttons */
     cursor: pointer;
     z-index: 10;
     align-items: center;
     justify-content: center;
     font-size: 1.3rem;
     transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
 }
 
@@ -524,7 +535,7 @@ ul {
     color: #fff;
     border-color: #000;
     transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 .prev-nav {
@@ -601,14 +612,14 @@ ul {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
     border: 2px solid transparent;
 }
 
 .pagination-dot:hover {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.2);
     transform: scale(1.2);
 }
 
